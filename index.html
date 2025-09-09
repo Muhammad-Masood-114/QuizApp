@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz App with Timer</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #6a11cb, #2575fc);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .quiz-container {
+        background: #fff;
+        padding: 20px 30px;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        width: 400px;
+        text-align: center;
+      }
+      h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        color: #333;
+      }
+      #progress {
+        height: 10px;
+        background: #ddd;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        overflow: hidden;
+      }
+      #progress-bar {
+        height: 100%;
+        width: 0%;
+        background: #2575fc;
+        transition: width 0.3s ease;
+      }
+      .timer {
+        font-size: 18px;
+        margin-bottom: 10px;
+        color: #444;
+      }
+      .question {
+        font-size: 18px;
+        margin: 15px 0;
+        color: #444;
+      }
+      .options button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 8px;
+        background: #2575fc;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .options button:hover {
+        background: #6a11cb;
+      }
+      #result {
+        margin-top: 15px;
+        font-size: 18px;
+        font-weight: bold;
+      }
+      #restart {
+        display: none;
+        margin-top: 20px;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 8px;
+        background: #6a11cb;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      #restart:hover {
+        background: #2575fc;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="quiz-container">
+      <h1>Quiz App</h1>
+      <div id="progress"><div id="progress-bar"></div></div>
+      <div class="timer">Time Left: <span id="time"></span></div>
+      <div class="question" id="question"></div>
+      <div class="options" id="options"></div>
+      <div id="result">Your score: <span id="score">0</span></div>
+      <button id="restart">🔄 Restart</button>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
