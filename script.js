@@ -167,6 +167,8 @@ let quizLoad = function () {
     const button = document.createElement("button");
     button.classList.add("option");
     button.textContent = option;
+    button.classList.remove("correct", "incorrect");
+
     button.addEventListener("click", () => {
       checkAnswer(index);
     });
@@ -176,11 +178,23 @@ let quizLoad = function () {
 };
 quizLoad();
 function checkAnswer(selectOptionsIndex) {
-  if (selectOptionsIndex === quizData[currentQuestion].correctOption) {
+  let correctOption = quizData[currentQuestion].correctOption;
+  let optionsBtn = document.querySelectorAll(".option");
+  optionsBtn.forEach((button, index) => {
+    if (index === correctOption) {
+      button.classList.add("correct");
+    } else if (index === selectOptionsIndex) {
+      button.classList.add("incorrect");
+    }
+  });
+  if (selectOptionsIndex === correctOption) {
     scoreEl.innerHTML = score += quizData[currentQuestion].points;
   }
-  currentQuestion++;
-  quizLoad();
+
+  setTimeout(() => {
+    currentQuestion++;
+    quizLoad();
+  }, 1000);
 }
 
 const startTimer = function startTimer() {
