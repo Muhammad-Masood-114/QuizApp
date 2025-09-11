@@ -15,6 +15,7 @@
         margin: 0;
       }
       .quiz-container {
+        display: none;
         background: #fff;
         padding: 20px 30px;
         border-radius: 15px;
@@ -93,17 +94,49 @@
         background-color: red !important;
         color: white;
       }
+      .start {
+        margin-top: 15px;
+        font-size: 18px;
+        font-weight: bold;
+      }
+      .btn {
+        margin-top: 20px;
+        padding: 10px 50px;
+        border: none;
+        border-radius: 8px;
+        background: #793bbb;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      .btn:hover {
+        background: #2575fc;
+      }
     </style>
   </head>
   <body>
+    <div style="padding-bottom: 30%"><h1>WellCome to Quiz</h1></div>
+
     <div class="quiz-container">
       <h1>Quiz App</h1>
       <div id="progress"><div id="progress-bar"></div></div>
-      <div class="timer">Time Left: <span id="time"></span></div>
+      <div>
+        <div id="question-div"><span id="question"></span></div>
+        <div id="result">Your score: <span id="score">0</span></div>
+      </div>
+
       <div class="question" id="question"></div>
       <div class="options" id="options"></div>
-      <div id="result">Your score: <span id="score">0</span></div>
-      <button id="restart">🔄 Restart</button>
+      <button class="btn" id="restart">🔄 Restart</button>
+      <div>
+        <button class="btn" id="next">Next</button>
+        <div class="timer" style="padding-left: 50%">
+          Time Left: <span id="time"></span>
+        </div>
+      </div>
+    </div>
+    <div style="padding-right: 30%">
+      <button class="btn" id="start">Start</button>
     </div>
 
     <script src="script.js"></script>

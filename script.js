@@ -149,9 +149,15 @@ let options = document.querySelector(".options");
 
 let scoreEl = document.getElementById("score");
 
+let startbtn = document.getElementById("start");
+let question_div = document.getElementById("question");
+
+let quiz_div = document.querySelector(".quiz-container");
+let next_btn = document.getElementById("next");
+
 let score = 0;
 let currentQuestion = 0;
-let timeleft = 30;
+let timeleft = 180;
 let timerInterval;
 
 let quizLoad = function () {
@@ -170,13 +176,23 @@ let quizLoad = function () {
     button.classList.remove("correct", "incorrect");
 
     button.addEventListener("click", () => {
+      next_btn.style.display = "block";
       checkAnswer(index);
+
+      next_btn.addEventListener("click", () => {
+        next_btn.style.display = "none";
+
+        quizLoad();
+      });
+      currentQuestion++;
     });
     options.appendChild(button);
   });
-  progressBar.style.width = (currentQuestion / quizData.length) * 100 + "%";
+  progressBar.style.width =
+    ((currentQuestion + 1) / quizData.length) * 100 + "%";
+  question_div.textContent = `${currentQuestion + 1} / ${quizData.length}`;
 };
-quizLoad();
+
 function checkAnswer(selectOptionsIndex) {
   let correctOption = quizData[currentQuestion].correctOption;
   let optionsBtn = document.querySelectorAll(".option");
@@ -190,24 +206,20 @@ function checkAnswer(selectOptionsIndex) {
   if (selectOptionsIndex === correctOption) {
     scoreEl.innerHTML = score += quizData[currentQuestion].points;
   }
-
-  setTimeout(() => {
-    currentQuestion++;
-    quizLoad();
-  }, 1000);
 }
 
 const startTimer = function startTimer() {
   timerInterval = setInterval(() => {
+    let mint = Math.floor(timeleft / 60);
+    let sec = timeleft % 60;
     timeleft--;
-    timer.textContent = timeleft;
+    timer.textContent = `Time Left : ${mint} : ${sec}`;
     if (timeleft <= 0) {
       clearInterval(timerInterval);
       quizEnd();
     }
   }, 1000);
 };
-startTimer();
 
 let quizEnd = function () {
   clearInterval(timerInterval);
@@ -216,18 +228,30 @@ let quizEnd = function () {
   result.style.display = "block";
   score.textContent = score;
   restartBtn.style.display = "block";
+  next_btn.style.display = "none";
 };
 
 restartBtn.addEventListener("click", () => {
   currentQuestion = 0;
   score = 0;
-  timeleft = 30;
+  timeleft = 180;
   timer.textContent = timeleft;
 
   question.style.display = "block";
   options.style.display = "block";
   result.style.display = "none";
   restartBtn.style.display = "none";
+  quiz_div.style.display = "none";
+  startbtn.style.display = "block";
+
+  quizLoad();
+});
+
+startbtn.addEventListener("click", () => {
+  quiz_div.style.display = "block";
+  startbtn.style.display = "none";
+  next_btn.style.display = "none";
+
   quizLoad();
   startTimer();
 });
