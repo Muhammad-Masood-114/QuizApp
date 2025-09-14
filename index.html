@@ -112,16 +112,27 @@
       .btn:hover {
         background: #2575fc;
       }
+      /* Welcome Screen */
+      .welcome-container {
+        text-align: center;
+      }
+      .welcome-container h1 {
+        font-size: 28px;
+        color: #fff;
+        margin-bottom: 20px;
+      }
     </style>
   </head>
   <body>
-    <div style="padding-bottom: 30%"><h1>WellCome to Quiz</h1></div>
+    <div class="welcome-container" id="welcome">
+      <h1>Welcome to Quiz</h1>
+      <button class="btn" id="start">Start</button>
+    </div>
 
     <div class="quiz-container">
       <h1>Quiz App</h1>
       <div id="progress"><div id="progress-bar"></div></div>
       <div>
-        <div id="question-div"><span id="question"></span></div>
         <div id="result">Your score: <span id="score">0</span></div>
       </div>
 
@@ -134,9 +145,6 @@
           Time Left: <span id="time"></span>
         </div>
       </div>
-    </div>
-    <div style="padding-right: 30%">
-      <button class="btn" id="start">Start</button>
     </div>
 
     <script src="script.js"></script>

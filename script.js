@@ -154,6 +154,7 @@ let question_div = document.getElementById("question");
 
 let quiz_div = document.querySelector(".quiz-container");
 let next_btn = document.getElementById("next");
+let welcome_container = document.querySelector(".welcome-container");
 
 let score = 0;
 let currentQuestion = 0;
@@ -248,6 +249,7 @@ restartBtn.addEventListener("click", () => {
 });
 
 startbtn.addEventListener("click", () => {
+  welcome_container.style.display = "none";
   quiz_div.style.display = "block";
   startbtn.style.display = "none";
   next_btn.style.display = "none";
